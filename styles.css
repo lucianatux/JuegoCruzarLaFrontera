@@ -1,11 +1,19 @@
+:root {
+    --first-color: #e6e6e6;
+    --second-color: #131313;
+  }
+  body{
+    background-color: var(--first-color);
+    font-size: 20px;
+  }
 .container{
-    margin: 10px;
-    padding: 10px auto;
+    margin: 20px;
+    padding: 20px;
     align-items: center;
     justify-content: center;
     text-align: center;
 }
 
 img{
-    width: 100px;
+    width: 150px;
 }

@@ -29,4 +29,4 @@ function revisarPalabra(palabra, norma) {
 	// Retorna true si cumple y false si no cumple
 }
 
-document.querySelector('form').addEventListener('submit
+document.querySelector('form').addEventListener('submit');
