@@ -38,8 +38,12 @@ document.getElementById('darkmode').addEventListener('click', function(){
     if (document.body.style.background == 'var(--second-color)'){
         document.body.style.background = 'var(--first-color)';
         document.body.style.color = 'var(--second-color)';
+		document.getElementById('bridge').src = './assets/bridge-icon.jpg';
+	
     }else{  
         document.body.style.background = 'var(--second-color)';
         document.body.style.color = 'var(--first-color)';
+		document.getElementById('bridge').src = './assets/bridgeblack.jpg';
+
     }
 })
