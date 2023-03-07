@@ -1,3 +1,4 @@
+/*
 function revisarPalabra(palabra, norma) {
 	// Revisa si la palabra cumple con la norma
 	// Retorna true si cumple y false si no cumple
@@ -30,3 +31,15 @@ function revisarPalabra(palabra, norma) {
 }
 
 document.querySelector('form').addEventListener('submit');
+*/
+
+//dark mode/light mode
+document.getElementById('darkmode').addEventListener('click', function(){
+    if (document.body.style.background == 'var(--second-color)'){
+        document.body.style.background = 'var(--first-color)';
+        document.body.style.color = 'var(--second-color)';
+    }else{  
+        document.body.style.background = 'var(--second-color)';
+        document.body.style.color = 'var(--first-color)';
+    }
+})
