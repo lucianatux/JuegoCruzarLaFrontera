@@ -46,4 +46,14 @@ document.getElementById('darkmode').addEventListener('click', function(){
 		document.getElementById('bridge').src = './assets/bridgeblack.jpg';
 
     }
-})
+});
+
+document.getElementById('comenzar').addEventListener('click', function(){
+	if (document.getElementById('info').style.display == 'none'){
+        document.getElementById('info').style.display = 'block';
+		document.getElementById('comenzar').innerHTML = 'Comenzar Juego';
+    }else{  
+        document.getElementById('info').style.display = 'none';
+		document.getElementById('comenzar').innerHTML = 'Reiniciar';
+    }
+});
