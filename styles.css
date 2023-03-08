@@ -1,6 +1,8 @@
 :root {
     --first-color: #e6e6e6;
     --second-color: #131313;
+    --third-color: #ffc107;
+    --fourth-color: #7f07ff;
   }
   body{
     background-color: var(--first-color);
@@ -12,6 +14,11 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+
+button{
+  margin: 10px;
+  box-shadow: 2px 2px 3px var(--fourth-color);
 }
 
 #game{
