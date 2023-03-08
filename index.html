@@ -7,14 +7,7 @@
     <title>Juego Cruzar la Frontera</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <link rel="icon" type="image" href="./assets/bridge-icon.jpg" />
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-  />
-  <link
-    href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    rel="stylesheet"
-  />
+    
 </head>
 <body>
     <button
@@ -39,38 +32,38 @@
             haces, entonces has descubierto la clave y ganas. 
             En caso contrario, pierdes.
             Finalmente, se muestra la clave.</p>
-        <div>
-            <button>Comenzar Juego</button>
+        <button>Comenzar Juego</button>
+        <div id="game">
             <p>Cruzo la frontera con vestido, pero no con pantalón</p>
+            <!-- Aquí irá el formulario para ingresar la palabra -->
+            <form id="jugando">
+                <label for="palabra">Ingresa una palabra:</label>
+                <input type="text" id="palabra" name="palabra">
+                <button type="submit">Enviar</button>
+            </form>
+            <div>
+                <p>No, no puedes cruzar la frontera</p>
+            </div>
+            <button>Arriesgar</button>
+            <form id="arriesgando">
+                <p>3 palabras para cruzar la frontera</p>
+                <label for="si1">1:</label>
+                <input type="text" id="si1" name="si1">
+                <label for="si2">2:</label>
+                <input type="text" id="si2" name="si2">
+                <label for="si3">3:</label>
+                <input type="text" id="si3" name="si3">
+                <p>3 palabras para NO cruzar la frontera</p>
+                <label for="no1">1:</label>
+                <input type="text" id="no1" name="no1">
+                <label for="no2">2:</label>
+                <input type="text" id="no2" name="no2">
+                <label for="no3">3:</label>
+                <input type="text" id="no3" name="no3">
+                <button type="submit">Enviar</button>
+            </form>
         </div>
-	    <!-- Aquí irá el formulario para ingresar la palabra -->
-        <form id="jugando">
-            <label for="palabra">Ingresa una palabra:</label>
-            <input type="text" id="palabra" name="palabra">
-            <button type="submit">Enviar</button>
-        </form>
-        <div>
-            <p>No, no puedes cruzar la frontera</p>
         </div>
-        <button>Arriesgar</button>
-        <form id="arriesgando">
-            <p>3 palabras para cruzar la frontera</p>
-            <label for="si1">1:</label>
-            <input type="text" id="si1" name="si1">
-            <label for="si2">2:</label>
-            <input type="text" id="si2" name="si2">
-            <label for="si3">3:</label>
-            <input type="text" id="si3" name="si3">
-            <p>3 palabras para NO cruzar la frontera</p>
-            <label for="no1">1:</label>
-            <input type="text" id="no1" name="no1">
-            <label for="no2">2:</label>
-            <input type="text" id="no2" name="no2">
-            <label for="no3">3:</label>
-            <input type="text" id="no3" name="no3">
-            <button type="submit">Enviar</button>
-        </form>
-    </div>
   
     <script src="./script.js"></script>
 </body>
