@@ -52,8 +52,10 @@ document.getElementById('comenzar').addEventListener('click', function(){
 	if (document.getElementById('info').style.display == 'none'){
         document.getElementById('info').style.display = 'block';
 		document.getElementById('comenzar').innerHTML = 'Comenzar Juego';
+		document.getElementById('game').style.display = 'none';
     }else{  
         document.getElementById('info').style.display = 'none';
 		document.getElementById('comenzar').innerHTML = 'Reiniciar';
+		document.getElementById('game').style.display = 'block';
     }
 });
