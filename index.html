@@ -33,9 +33,6 @@
             </div>
           </nav>
     </header>
-    <div class="header">
-       
-    </div>
     <div class="container">
         <img id="bridge" src="./assets/bridge-icon.jpg"></img>
         <h1 id="titulo"> Cruzar la Frontera</h1>
@@ -55,12 +52,12 @@
         <div id="game">
             <div class="row">
                 <div class="col-md-3">
-                    <img id="guardian" src="./assets/viejo.jpg" alt="guardian">
+                    <img class="guardian" src="./assets/viejo.jpg" alt="guardian">
                 </div>
                 <div class="col-md-6 col-sm-6">
                     <p class="dialogo">"Hola viajante! No puedes pasar por aquí, a menos que sepas la clave. 
                         <br>Te daré solo un par de pistas:
-                        <br>...Puedes cruzar la frontera con vestido, pero no con pantalón"</h4>
+                        <br>...Puedes cruzar la frontera con vestido, pero no con pantalón"</p>
                 </div>
                 <div class="col-md-3 col-sm-6">
                 </div>
@@ -72,9 +69,27 @@
                 <input type="text" id="palabra" name="palabra">
                 <button type="submit" class="btn btn-info">Enviar</button>
             </form>
-            <div>
-                <p>No, no puedes cruzar la frontera</p>
+            <div class="row">
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-6 col-sm-6 d-flex align-items-center">
+                    <p class="dialogo">"¿Puedo cruzar la frontera con ... campera?"</p>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <img src="./assets/girl.jpg" alt="niña">
+                </div>
             </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <img class="guardian" src="./assets/viejo.jpg" alt="guardian">
+                </div>
+                <div class="col-md-6 col-sm-6 d-flex align-items-center">
+                    <p class="dialogo">"...No, no puedes..."</p>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                </div>
+            </div>
+           
             <button type="button" class="btn btn-danger">Arriesgar</button>
             <form id="arriesgando">
                 <p>3 palabras para cruzar la frontera</p>
