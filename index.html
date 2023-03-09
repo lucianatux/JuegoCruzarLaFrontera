@@ -51,18 +51,17 @@
         <button type="button" id="comenzar" class="btn btn-warning">Comenzar Juego</button>
         <div id="game">
             <div class="row">
-                <div class="col-md-3">
-                    <img class="guardian" src="./assets/viejo.jpg" alt="guardian">
+                <div class="col-md-3 col-sm-6">
+                    <img class="guardian img-fluid" src="./assets/viejo.jpg" alt="guardian">
                 </div>
                 <div class="col-md-6 col-sm-6">
                     <p class="dialogo">"Hola viajante! No puedes pasar por aquí, a menos que sepas la clave. 
                         <br>Te daré solo un par de pistas:
                         <br>...Puedes cruzar la frontera con vestido, pero no con pantalón"</p>
                 </div>
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-3">
                 </div>
-            </div>
-            
+            </div> 
             <!-- Aquí irá el formulario para ingresar la palabra -->
             <form id="jugando">
                 <label for="palabra">Ingresa una palabra:</label>
@@ -72,40 +71,43 @@
             <div class="row">
                 <div class="col-md-3">
                 </div>
-                <div class="col-md-6 col-sm-6 d-flex align-items-center">
+                <div class="col-md-6 col-sm-6 d-flex align-items-center justify-content-end">
                     <p class="dialogo">"¿Puedo cruzar la frontera con ... campera?"</p>
                 </div>
                 <div class="col-md-3 col-sm-6">
-                    <img src="./assets/girl.jpg" alt="niña">
+                    <img class="girl img-fluid" src="./assets/girl.jpg" alt="niña">
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3">
-                    <img class="guardian" src="./assets/viejo.jpg" alt="guardian">
+                <div class="col-md-3 col-sm-6">
+                    <img class="guardian img-fluid" src="./assets/viejo.jpg" alt="guardian">
                 </div>
-                <div class="col-md-6 col-sm-6 d-flex align-items-center">
+                <div class="col-md-6 col-sm-6 d-flex align-items-center justify-content-start">
                     <p class="dialogo">"...No, no puedes..."</p>
                 </div>
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-3">
                 </div>
-            </div>
-           
+            </div> 
             <button type="button" class="btn btn-danger">Arriesgar</button>
             <form id="arriesgando">
-                <p>3 palabras para cruzar la frontera</p>
-                <label for="si1">1:</label>
-                <input type="text" id="si1" name="si1">
-                <label for="si2">2:</label>
-                <input type="text" id="si2" name="si2">
-                <label for="si3">3:</label>
-                <input type="text" id="si3" name="si3">
-                <p>3 palabras para NO cruzar la frontera</p>
-                <label for="no1">1:</label>
-                <input type="text" id="no1" name="no1">
-                <label for="no2">2:</label>
-                <input type="text" id="no2" name="no2">
-                <label for="no3">3:</label>
-                <input type="text" id="no3" name="no3">
+                <div class="sino">
+                    <p>3 palabras para cruzar la frontera</p>
+                    <label for="si1">1:</label>
+                    <input type="text" id="si1" name="si1">
+                    <label for="si2">2:</label>
+                    <input type="text" id="si2" name="si2">
+                    <label for="si3">3:</label>
+                    <input type="text" id="si3" name="si3">
+                </div>
+                <div class="sino">
+                    <p>3 palabras para NO cruzar la frontera</p>
+                    <label for="no1">1:</label>
+                    <input type="text" id="no1" name="no1">
+                    <label for="no2">2:</label>
+                    <input type="text" id="no2" name="no2">
+                    <label for="no3">3:</label>
+                    <input type="text" id="no3" name="no3">
+                </div>
                 <button type="submit" class="btn btn-success">Enviar</button>
             </form>
         </div>
