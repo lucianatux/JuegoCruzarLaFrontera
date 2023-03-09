@@ -17,7 +17,7 @@
     text-align: center;
 }
 
-/*button{
+.btn{
   margin: 8px;
   padding: 8px;
   background-color: var(--third-color);
@@ -28,11 +28,16 @@
   font-size: 16px;
 }
 
-button:hover{
+.btn:hover{
   background-color: var(--first-color);
   box-shadow: 3px 3px 4px var(--fourth-color);
 
-}*/
+}
+
+#titulo{
+  color: var(--fourth-color);
+  padding: 10px;
+}
 
 .dialogo{
   font-family: cursive;
