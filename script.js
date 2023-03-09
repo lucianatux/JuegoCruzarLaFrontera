@@ -34,18 +34,18 @@ document.querySelector('form').addEventListener('submit');
 */
 
 //dark mode/light mode
-var guardians = document.getElementsByClassName('guardian');
-var girls = document.getElementsByClassName('girl');
+let guardians = document.getElementsByClassName('guardian');
+let girls = document.getElementsByClassName('girl');
 
 document.getElementById('darkmode').addEventListener('click', function(){
     if (document.body.style.background == 'var(--second-color)'){
         document.body.style.background = 'var(--first-color)';
         document.body.style.color = 'var(--second-color)';
 		document.getElementById('bridge').src = './assets/bridge-icon.jpg';
-		for (var i = 0; i < guardians.length; i++) {
+		for (let i = 0; i < guardians.length; i++) {
 			guardians[i].src = './assets/viejo.jpg';
 		  }
-		  for (var i = 0; i < girls.length; i++) {
+		  for (let i = 0; i < girls.length; i++) {
 			girls[i].src = './assets/girl.jpg';
 		  }
 	
@@ -53,10 +53,10 @@ document.getElementById('darkmode').addEventListener('click', function(){
         document.body.style.background = 'var(--second-color)';
         document.body.style.color = 'var(--first-color)';
 		document.getElementById('bridge').src = './assets/bridgeblack.jpg';
-		for (var i = 0; i < guardians.length; i++) {
+		for (let i = 0; i < guardians.length; i++) {
 			guardians[i].src = './assets/viejodark.jpg';
 		  }
-		  for (var i = 0; i < girls.length; i++) {
+		  for (let i = 0; i < girls.length; i++) {
 			girls[i].src = './assets/girldark.jpg';
 		  }
     }
@@ -73,3 +73,4 @@ document.getElementById('comenzar').addEventListener('click', function(){
 		document.getElementById('game').style.display = 'block';
     }
 });
+
