@@ -34,6 +34,15 @@ button:hover{
 
 }
 
+.dialogo{
+  font-family: cursive;
+  font-size: 18px;
+}
+
+#guardian{
+  padding-right: 15px;
+}
+
 #info{
   display: block;
 }
@@ -41,6 +50,8 @@ button:hover{
 #game{
   display: none;
   border-style: double;
+  margin: 20px;
+  padding: 15px;
 }
 
 img{
