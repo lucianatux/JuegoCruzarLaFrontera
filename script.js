@@ -71,24 +71,24 @@ document.getElementById('comenzar').addEventListener('click', function(){
         document.getElementById('info').style.display = 'none';
 		document.getElementById('comenzar').innerHTML = 'Reiniciar';
 		document.getElementById('game').style.display = 'block';
-		mostrarTexto();
+		mostrarTexto('hola');
     }
 });
 
 //TEXTOS QUE APARECEN LENTAMENTE
 
-function mostrarTexto() {
-	const textoCompleto = document.getElementById("hola");
-	const texto = textoCompleto.innerHTML;
-	textoCompleto.innerHTML = ""; // borra el contenido del elemento HTML
+function mostrarTexto(idElemento) {
+	const elemento = document.getElementById(idElemento);
+	const texto = elemento.innerHTML;
+	elemento.innerHTML = ""; // borra el texto del elemento HTML
 	let i = 0;
 	const intervalo = setInterval(function() {
 	  if (i < texto.length) {
-		textoCompleto.innerHTML += texto.charAt(i);
+		elemento.innerHTML += texto.charAt(i); // agrega la letra al texto
 		i++;
 	  } else {
 		clearInterval(intervalo);
 	  }
-	}, 50); // aquí puedes ajustar el intervalo de tiempo (en milisegundos) entre cada letra
+	}, 50); // aquí se puede ajustar el intervalo de tiempo (en milisegundos) entre cada letra
   }
   
