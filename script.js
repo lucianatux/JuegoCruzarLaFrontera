@@ -33,7 +33,7 @@ function revisarPalabra(palabra, norma) {
 document.querySelector('form').addEventListener('submit');
 */
 
-//dark mode/light mode
+//MODO OSCURO Y MODO CLARO
 let guardians = document.getElementsByClassName('guardian');
 let girls = document.getElementsByClassName('girl');
 
@@ -62,6 +62,7 @@ document.getElementById('darkmode').addEventListener('click', function(){
     }
 });
 
+//LO QUE PASA AL COMENZAR
 document.getElementById('comenzar').addEventListener('click', function(){
 	if (document.getElementById('info').style.display == 'none'){
         document.getElementById('info').style.display = 'block';
@@ -76,7 +77,6 @@ document.getElementById('comenzar').addEventListener('click', function(){
 });
 
 //TEXTOS QUE APARECEN LENTAMENTE
-
 function mostrarTexto(idElemento) {
 	const elemento = document.getElementById(idElemento);
 	const texto = elemento.innerHTML;
@@ -92,3 +92,24 @@ function mostrarTexto(idElemento) {
 	}, 50); // aquí se puede ajustar el intervalo de tiempo (en milisegundos) entre cada letra
   }
   
+  //LO QUE PASA AL ENVIAR PALABRA
+// Obtener los elementos del DOM que necesitaremos
+const formulario = document.querySelector('form');
+const input = document.querySelector('#palabra');
+const pregunta = document.querySelector('#pregunta');
+
+// Agregar un controlador de eventos para el botón de enviar
+formulario.addEventListener('submit', function(evento) {
+  evento.preventDefault(); // Evitar que el formulario se envíe
+
+  // Obtener el valor del input
+  let palabra = input.value;
+
+  //Agregar palabra a la pregunta
+  palabra = palabra + '?';
+  pregunta.innerHTML += palabra;
+
+  // Mostrar la palabra en el resultado
+	mostrarTexto('pregunta');
+	pregunta.style.display= 'block';
+});
