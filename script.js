@@ -99,8 +99,10 @@ function onSubmitFormulario(evento) {
   palabra = palabra + "?";
   input.value = '';
 
-  // Obtener una referencia al div con id "girlask"
+  // Obtener una referencia al div con id "girlask" donde aparecera la pregunta
   const div = document.getElementById("girlask");
+  // Obtener una referencia al div2 con id "oldmananswer" donde aparecera la respuesta
+  const div2 = document.getElementById("oldmananswer");
   // Crear un nuevo elemento "p" con la pregunta y con id pregunta
   let ppregunta = document.createElement("p");
   ppregunta.textContent = "Puedo cruzar la frontera con ... ";
@@ -119,12 +121,31 @@ function onSubmitFormulario(evento) {
     div.appendChild(pword);
     mostrarTexto("word");
     setTimeout(function () {
-      ppregunta.remove();
-      pword.remove();
-    }, 5000);
+      // Llamar a la función verificarPalabra y crear un nuevo elemento "p" con la respuesta correspondiente
+      let prespuesta = document.createElement("p");
+      prespuesta.textContent = verificarPalabra(palabra);
+      prespuesta.id = "respuesta";
+	  prespuesta.className = "dialogo";
+      div2.appendChild(prespuesta);
+      mostrarTexto("respuesta");
+      setTimeout(function () {
+        ppregunta.remove();
+        pword.remove();
+        prespuesta.remove();
+      }, 3000);
+    }, 3000);
   }, 3000);
 }
 // Agrega un controlador de eventos para el botón de enviar
 const formulario = document.querySelector("form");
 formulario.addEventListener("submit", onSubmitFormulario);
 
+//CHEQUEO DE LA PALABRA EN BASE A LA CLAVE
+function verificarPalabra(palabra) {
+	let contieneE = palabra.includes('e');
+	if (contieneE) {
+	  return "Sí, si puedes";
+	} else {
+	  return "No, no puedes";
+	}
+  }
