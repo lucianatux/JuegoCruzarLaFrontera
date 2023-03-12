@@ -113,15 +113,13 @@ function onSubmitFormulario(evento) {
   pword.textContent = palabra;
   pword.id = "word";
   pword.className = "dialogo";
-  // Agregar los elementos "p" como hijos del div
+  // Agrega y muestra la pregunta, la palabra y la respuesta coorespondiente segun la funcion y luego las elimina
   div.appendChild(ppregunta);
-  //Muestra la pregunta, la palabra y luego las elimina
   mostrarTexto("pregunta");
   setTimeout(function () {
     div.appendChild(pword);
     mostrarTexto("word");
     setTimeout(function () {
-      // Llamar a la función verificarPalabra y crear un nuevo elemento "p" con la respuesta correspondiente
       let prespuesta = document.createElement("p");
       prespuesta.textContent = verificarPalabra(palabra);
       prespuesta.id = "respuesta";
