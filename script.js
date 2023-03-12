@@ -93,6 +93,7 @@ function mostrarTexto(idElemento) {
   }
   
   //LO QUE PASA AL ENVIAR PALABRA
+  /*
 // Obtener los elementos del DOM que necesitaremos
 const formulario = document.querySelector('form');
 const input = document.querySelector('#palabra');
@@ -113,3 +114,81 @@ formulario.addEventListener('submit', function(evento) {
 	mostrarTexto('pregunta');
 	pregunta.style.display= 'block';
 });
+
+
+  // Define la función que se llamará cuando se envíe el formulario
+function onSubmitFormulario(evento) {
+	evento.preventDefault(); // Evita que el formulario se envíe
+  
+	const input = document.querySelector('#palabra');
+	const pregunta = document.querySelector('#pregunta');
+  
+	let palabra = input.value;
+  
+	palabra = palabra + '?';
+
+// Crear un nuevo elemento "p" con el contenido de la palabra y letra "a" agregada
+	let nuevo_elemento_p = document.createElement("p");
+	nuevo_elemento_p.textContent = palabra;
+
+// Asignar un ID "word" al nuevo elemento "p"
+	nuevo_elemento_p.id = "word";
+
+	pregunta.insertAdjacentElement("afterend", nuevo_elemento_p);
+  
+	mostrarTexto('pregunta');
+	pregunta.style.display = 'block';
+	mostrarTexto('word');
+
+	// Eliminar el elemento "p" después de mostrar su contenido
+	nuevo_elemento_p.remove();
+  }
+  
+  // Agrega un controlador de eventos para el botón de enviar
+  const formulario = document.querySelector('form');
+  formulario.addEventListener('submit', onSubmitFormulario);
+  */
+
+  function onSubmitFormulario(evento) {
+	evento.preventDefault(); // Evita que el formulario se envíe
+  
+	const input = document.querySelector('#palabra');  
+	let palabra = input.value;
+	palabra = palabra + '?';
+
+	  // Obtener una referencia al div con id "girlask"
+	  const div = document.getElementById('girlask');
+
+	// Crear un nuevo elemento "p" con la pregunta y con id pregunta
+	let ppregunta = document.createElement("p");
+	ppregunta.textContent = "Puedo cruzar la frontera con ... ";
+	ppregunta.id = "pregunta";
+	ppregunta.className = "dialogo";
+
+	// Crear un nuevo elemento "p" con el contenido de la palabra y con id word
+	let pword = document.createElement("p");
+	pword.textContent = palabra;
+	pword.id = "word";
+
+	  // Agregar los elementos "p" como hijos del div
+	  div.appendChild(ppregunta);
+  
+	mostrarTexto('pregunta');
+	// Eliminar el elemento con id "pregunta" después de 5 segundos
+
+	setTimeout(function() {
+		div.appendChild(pword);
+		mostrarTexto('word');
+	setTimeout(function() {
+		ppregunta.remove();
+		pword.remove();
+	}, 5000);
+	},3000);
+	
+}
+  
+// Agrega un controlador de eventos para el botón de enviar
+const formulario = document.querySelector('form');
+formulario.addEventListener('submit', onSubmitFormulario);
+
+  
