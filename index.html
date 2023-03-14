@@ -53,48 +53,50 @@
             Finalmente, se muestra la clave.</p>
         <button type="button" id="comenzar" class="btn btn-warning">Comenzar Juego</button>
         <div id="game">
-            <div class="row talk0">
-                <div class="col-md-3 col-sm-6">
-                    <img class="guardian img-fluid" src="./assets/viejo.jpg" alt="guardian">
+            <div id="pistas">
+                <div class="row talk0">
+                    <div class="col-md-3 col-sm-6">
+                        <img class="guardian img-fluid" src="./assets/viejo.jpg" alt="guardian">
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <p class="dialogo" id="hola">"Hola viajante! No puedes pasar por aquí, a menos 
+                            que sepas la clave... Te daré sólo un par de pistas: ...Puedes cruzar la frontera 
+                            con vestido... pero no con pantalón"
+                        </p>
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                </div> 
+                <!-- Aquí el formulario para ingresar la palabra -->
+                <form id="jugando">
+                    <label for="palabra">Ingresa una palabra:</label>
+                    <input type="text" id="palabra" name="palabra" required>
+                    <button type="submit" id="enviarPalabra" class="btn btn-info">Enviar</button>
+                </form>
+                <div class="row talk1">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-6 col-sm-6 d-flex align-items-center justify-content-end" id="girlask">
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <img class="girl img-fluid" src="./assets/girl.jpg" alt="niña">
+                    </div>
                 </div>
-                <div class="col-md-6 col-sm-6">
-                    <p class="dialogo" id="hola">"Hola viajante! No puedes pasar por aquí, a menos 
-                        que sepas la clave... Te daré sólo un par de pistas: ...Puedes cruzar la frontera 
-                        con vestido... pero no con pantalón"
-                    </p>
-                </div>
-                <div class="col-md-3">
-                </div>
-            </div> 
-            <!-- Aquí el formulario para ingresar la palabra -->
-            <form id="jugando">
-                <label for="palabra">Ingresa una palabra:</label>
-                <input type="text" id="palabra" name="palabra" required>
-                <button type="submit" id="enviarPalabra" class="btn btn-info">Enviar</button>
-            </form>
-            <div class="row talk1">
-                <div class="col-md-3">
-                </div>
-                <div class="col-md-6 col-sm-6 d-flex align-items-center justify-content-end" id="girlask">
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <img class="girl img-fluid" src="./assets/girl.jpg" alt="niña">
-                </div>
-            </div>
-            <div class="row talk2">
-                <div class="col-md-3 col-sm-6">
-                    <img class="guardian img-fluid" src="./assets/viejo.jpg" alt="guardian">
-                </div>
-                <div class="col-md-6 col-sm-6 d-flex align-items-center justify-content-start" id="oldmananswer">
-                </div>
-                <div class="col-md-3">
+                <div class="row talk2">
+                    <div class="col-md-3 col-sm-6">
+                        <img class="guardian img-fluid" src="./assets/viejo.jpg" alt="guardian">
+                    </div>
+                    <div class="col-md-6 col-sm-6 d-flex align-items-center justify-content-start" id="oldmananswer">
+                    </div>
+                    <div class="col-md-3">
+                    </div>
                 </div>
             </div>
             <!-- Aquí el formulario para arriesgar --> 
             <button type="button" class="btn btn-danger" id="arriesgar">Arriesgar</button>
             <form id="arriesgando">
                 <div class="sino">
-                    <p>3 palabras para cruzar la frontera</p>
+                    <p>3 nuevas palabras para cruzar la frontera</p>
                     <label for="si1">1:</label>
                     <input type="text" id="si1" name="si1">
                     <label for="si2">2:</label>
@@ -103,7 +105,7 @@
                     <input type="text" id="si3" name="si3">
                 </div>
                 <div class="sino">
-                    <p>3 palabras para NO cruzar la frontera</p>
+                    <p>3 nuevas palabras para NO cruzar la frontera</p>
                     <label for="no1">1:</label>
                     <input type="text" id="no1" name="no1">
                     <label for="no2">2:</label>

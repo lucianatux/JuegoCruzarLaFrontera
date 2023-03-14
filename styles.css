@@ -67,11 +67,45 @@ img{
     width: 150px;
 }
 
-.sino{
-  padding: 10px;
+#jugando{
+  max-width: 400px;
+  margin: 0 auto;
+  display: block;
 }
 
-#arriesgando{
+#arriesgando {
   display: none;
+  max-width: 400px;
+  margin: 0 auto;
 }
+
+/* Estilo para el contenedor de cada conjunto de campos */
+.sino {
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+/* Estilo para las etiquetas de cada campo */
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Estilo para los campos de entrada de texto */
+input[type="text"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  #arriesgando {
+    padding: 0 10px;
+  }
+}
+
 

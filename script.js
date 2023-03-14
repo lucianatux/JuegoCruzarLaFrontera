@@ -150,9 +150,7 @@ function verificarPalabra(palabra) {
 
   //LO QUE PASA AL ARRIESGAR
   document.getElementById("arriesgar").addEventListener("click", function () {
-    if (document.getElementById("arriesgando").style.display == 'block') {
-      document.getElementById("arriesgando").style.display = 'none';
-    }else{
-      document.getElementById("arriesgando").style.display = 'block';
-    }
+    document.getElementById("pistas").style.display = 'none';
+    document.getElementById("arriesgando").style.display = 'block';
+    document.getElementById("arriesgar").style.display = 'none';
   });
