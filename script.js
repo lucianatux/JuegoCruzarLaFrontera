@@ -139,13 +139,18 @@ const formulario = document.querySelector("form");
 formulario.addEventListener("submit", onSubmitFormulario);
 
 //CHEQUEO DE LA PALABRA EN BASE A LA CLAVE
+function checkWord(word) {
+  // Verifica si la palabra cumple con la condición deseada
+  let condition = word.includes('e');
+  return condition;
+}
+
 function verificarPalabra(palabra) {
-	let contieneE = palabra.includes('e');
-	if (contieneE) {
-	  return "Sí, si puedes";
-	} else {
-	  return "No, no puedes";
-	}
+	// Llama a la función checkWord para verificar si la palabra cumple con la condición
+  let esValida = checkWord(palabra);
+  // Si la palabra cumple con la condición, devuelve "Sí, si puedes"
+  // De lo contrario, devuelve "No, no puedes"
+  return esValida ? "Sí, si puedes" : "No, no puedes";
   }
 
   //LO QUE PASA AL ARRIESGAR
@@ -154,3 +159,44 @@ function verificarPalabra(palabra) {
     document.getElementById("arriesgando").style.display = 'block';
     document.getElementById("arriesgar").style.display = 'none';
   });
+
+  //LO QUE PASA AL ENVIAR LUEGO DE ARRIESGAR
+// Selecciona el formulario y el botón de envío
+const formulario2 = document.getElementById('arriesgando');
+const enviarBoton = document.getElementById('entrega');
+
+// Agrega un controlador de eventos al botón de envío
+enviarBoton.addEventListener('click', function(evento) {
+  evento.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
+  // Selecciona los campos de entrada de texto
+  const si1 = document.getElementById('si1');
+  const si2 = document.getElementById('si2');
+  const si3 = document.getElementById('si3');
+  const no1 = document.getElementById('no1');
+  const no2 = document.getElementById('no2');
+  const no3 = document.getElementById('no3');
+  // Verifica si todas las palabras cumplen con la condición
+  const si1Valida = checkWord(si1.value);
+  const si2Valida = checkWord(si2.value);
+  const si3Valida = checkWord(si3.value);
+  const no1Valida = checkWord(no1.value);
+  const no2Valida = checkWord(no2.value);
+  const no3Valida = checkWord(no3.value);
+  // Comprueba si los campos cumplen con la condición
+  if (si1Valida && si2Valida && si3Valida && !no1Valida && !no2Valida && !no3Valida) {
+    // Muestra un mensaje de felicitación
+    alert('¡Felicitaciones! Ganaste');
+    setTimeout(function() {
+      // Recarga la página después de 5 segundos
+      location.reload();
+    }, 5000);
+  } else {
+    // Muestra un mensaje de error
+    alert('Perdiste alpiste');
+    setTimeout(function() {
+      // Recarga la página después de 5 segundos
+      location.reload();
+    }, 5000);
+  }
+});
+
