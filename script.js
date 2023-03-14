@@ -88,7 +88,7 @@ function mostrarTexto(idElemento) {
     } else {
       clearInterval(intervalo);
     }
-  }, 50); // aquí se puede ajustar el intervalo de tiempo (en milisegundos) entre cada letra
+  }, 30); // aquí se puede ajustar el intervalo de tiempo (en milisegundos) entre cada letra
 }
 
 //LO QUE PASA AL ENVIAR PALABRA
