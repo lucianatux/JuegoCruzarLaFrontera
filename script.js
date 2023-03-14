@@ -103,10 +103,15 @@ mostrar(game);
 const ppregunta = crearP
 */
 
-//MODO OSCURO Y MODO CLARO
+//CONSTANTES Y VARIABLES xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+const gameInfo = document.getElementById("gameInfo");
+const startButton = document.getElementById("startButton");
+const gameScreen = document.getElementById("gameScreen");
+
 let guardians = document.getElementsByClassName("guardian");
 let girls = document.getElementsByClassName("girl");
 
+//MODO OSCURO Y MODO CLARO xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 document.getElementById("darkmodeButton").addEventListener("click", function () {
   if (document.body.style.background == "var(--second-color)") {
     document.body.style.background = "var(--first-color)";
@@ -131,21 +136,21 @@ document.getElementById("darkmodeButton").addEventListener("click", function () 
   }
 });
 
-//LO QUE PASA AL COMENZAR
-document.getElementById("startButton").addEventListener("click", function () {
-  if (document.getElementById("gameInfo").style.display == "none") {
-    document.getElementById("gameInfo").style.display = "block";
-    document.getElementById("startButton").innerHTML = "Comenzar Juego";
-    document.getElementById("gameScreen").style.display = "none";
-  } else {
-    document.getElementById("gameInfo").style.display = "none";
-    document.getElementById("startButton").innerHTML = "Reiniciar";
-    document.getElementById("gameScreen").style.display = "block";
-    mostrarTexto("hola");
-  }
-});
+//FUNCIONES AUXILIARES xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+function mostrar(elemento) {
+  elemento.style.display = "block";
+}
 
-//TEXTOS QUE APARECEN LENTAMENTE
+function ocultar(elemento) {
+  elemento.style.display = "none";
+}
+
+function limpiarTexto(elemento) {
+  const elem = document.getElementById(elemento);
+  elem.remove();
+}
+
+//muestra texto letra por letra 
 function mostrarTexto(idElemento) {
   const elemento = document.getElementById(idElemento);
   const texto = elemento.innerHTML;
@@ -161,54 +166,66 @@ function mostrarTexto(idElemento) {
   }, 30); // aquí se puede ajustar el intervalo de tiempo (en milisegundos) entre cada letra
 }
 
-//LO QUE PASA AL ENVIAR PALABRA
-function onSubmitFormulario(evento) {
-  evento.preventDefault(); // Evita que el formulario se envíe
-  let wordInput = document.querySelector("#palabra");
-  let palabra = wordInput.value;
-  palabra = palabra + "?";
-  wordInput.value = "";
+//LO QUE PASA AL COMENZAR xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+startButton.addEventListener("click", function() {
+  if (gameInfo.style.display === "none") {
+    mostrar(gameInfo);
+    startButton.innerHTML = "Comenzar Juego";
+    ocultar(gameScreen);
+  } else {
+    ocultar(gameInfo);
+    startButton.innerHTML = "Reiniciar";
+    mostrar(gameScreen);
+    mostrarTexto("hola");
+  }
+});
 
-  // Obtener una referencia al div con id "girlask" donde aparecera la pregunta
-  const askDiv = document.getElementById("girlask");
-  // Obtener una referencia al div2 con id "oldmananswer" donde aparecera la respuesta
-  const answerDiv = document.getElementById("oldmananswer");
-  // Crear un nuevo elemento "p" con la pregunta y con id pregunta
-  let questionElem = document.createElement("p");
-  questionElem.textContent = "Puedo cruzar la frontera con ... ";
+//LO QUE PASA AL ENVIAR PALABRA xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+function agregarPregunta(palabra) {
+  const questionDiv = document.getElementById("girlask");
+  const questionElem = document.createElement("p");
+  questionElem.textContent = `"Puedo cruzar la frontera con ${palabra} ...?"`;
   questionElem.id = "pregunta";
   questionElem.className = "dialogo";
-  // Crear un nuevo elemento "p" con el contenido de la palabra y con id word
-  let wordElem = document.createElement("p");
-  wordElem.textContent = palabra;
-  wordElem.id = "word";
-  wordElem.className = "dialogo";
-  // Agrega y muestra la pregunta, la palabra y la respuesta coorespondiente segun la funcion y luego las elimina
-  askDiv.appendChild(questionElem);
+  questionDiv.appendChild(questionElem);
   mostrarTexto("pregunta");
-  setTimeout(function () {
-    askDiv.appendChild(wordElem);
-    mostrarTexto("word");
-    setTimeout(function () {
-      let answerElem = document.createElement("p");
-      answerElem.textContent = verificarPalabra(palabra);
-      answerElem.id = "respuesta";
-      answerElem.className = "dialogo";
-      answerDiv.appendChild(answerElem);
-      mostrarTexto("respuesta");
-      setTimeout(function () {
-        questionElem.remove();
-        wordElem.remove();
-        answerElem.remove();
-      }, 3000);
-    }, 3000);
-  }, 3000);
 }
-// Agrega un controlador de eventos para el botón de enviar
+  
+function agregarRespuesta(respuesta) {
+  const answerDiv = document.getElementById("oldmananswer");
+  const answerElem = document.createElement("p");
+  answerElem.textContent = respuesta;
+  answerElem.id = "respuesta";
+  answerElem.className = "dialogo";
+  answerDiv.appendChild(answerElem);
+  mostrarTexto("respuesta");
+}
+  
+const TIEMPO_ESPERA = 3000;
+  
+function onSubmitFormulario(evento) {
+  evento.preventDefault();
+  const palabraInput = document.querySelector("#palabra");
+  const palabra = `${palabraInput.value}`;
+  palabraInput.value = "";
+  
+  agregarPregunta(palabra);
+  
+  setTimeout(() => {
+    const respuesta = verificarPalabra(palabra);
+    agregarRespuesta(respuesta);
+  
+    setTimeout(() => {
+      limpiarTexto("pregunta");
+      limpiarTexto("respuesta");
+    }, TIEMPO_ESPERA);
+  }, TIEMPO_ESPERA);
+}
+
 const formulario = document.querySelector("form");
 formulario.addEventListener("submit", onSubmitFormulario);
 
-//CHEQUEO DE LA PALABRA EN BASE A LA CLAVE
+//CHEQUEO DE LA PALABRA EN BASE A LA CLAVE xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 function checkWord(word) {
   // Verifica si la palabra cumple con la condición deseada
   let condition = word.includes("e");
@@ -220,7 +237,7 @@ function verificarPalabra(palabra) {
   let esValida = checkWord(palabra);
   // Si la palabra cumple con la condición, devuelve "Sí, si puedes"
   // De lo contrario, devuelve "No, no puedes"
-  return esValida ? "Sí, si puedes" : "No, no puedes";
+  return esValida ? '"Sí, si puedes"' : '"No, no puedes"';
 }
 
 //LO QUE PASA AL ARRIESGAR
