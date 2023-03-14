@@ -53,7 +53,7 @@
             Finalmente, se muestra la clave.</p>
         <button type="button" id="startButton" class="btn btn-warning">Comenzar Juego</button>
         <div id="gameScreen">
-            <div id="pistas">
+            <div id="clues">
                 <div class="row talk0">
                     <div class="col-md-3 col-sm-6">
                         <img class="guardian img-fluid" src="./assets/viejo.jpg" alt="guardian">
@@ -93,8 +93,8 @@
                 </div>
             </div>
             <!-- Aquí el formulario para arriesgar --> 
-            <button type="button" class="btn btn-danger" id="arriesgar">Arriesgar</button>
-            <form id="arriesgando">
+            <button type="button" class="btn btn-danger" id="riskButton">Arriesgar</button>
+            <form id="riskForm">
                 <div class="sino">
                     <p>3 nuevas palabras para cruzar la frontera</p>
                     <label for="si1">1:</label>
@@ -113,7 +113,7 @@
                     <label for="no3">3:</label>
                     <input type="text" id="no3" name="no3">
                 </div>
-                <button type="submit" class="btn btn-success" id="entrega">Enviar</button>
+                <button type="submit" class="btn btn-success" id="finalRiskButton">Enviar</button>
             </form>
             <div id="mensaje"></div>
             <div class="confetti-container">

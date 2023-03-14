@@ -240,20 +240,20 @@ function verificarPalabra(palabra) {
   return esValida ? '"Sí, si puedes"' : '"No, no puedes"';
 }
 
-//LO QUE PASA AL ARRIESGAR
-document.getElementById("arriesgar").addEventListener("click", function () {
-  document.getElementById("pistas").style.display = "none";
-  document.getElementById("arriesgando").style.display = "block";
-  document.getElementById("arriesgar").style.display = "none";
+//LO QUE PASA AL ARRIESGAR xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+const clues = document.getElementById("clues");
+const riskForm = document.getElementById("riskForm");
+const riskButton = document.getElementById("riskButton");
+const finalRiskButton = document.getElementById("finalRiskButton");
+
+riskButton.addEventListener("click", function() {
+  ocultar(clues);
+  mostrar(riskForm);
+  ocultar(riskButton);
 });
 
-//LO QUE PASA AL ENVIAR LUEGO DE ARRIESGAR
-// Selecciona el formulario y el botón de envío
-const formulario2 = document.getElementById("arriesgando");
-const enviarBoton = document.getElementById("entrega");
-
-// Agrega un controlador de eventos al botón de envío
-enviarBoton.addEventListener("click", function (evento) {
+// Agrega un controlador de eventos al botón 
+finalRiskButton.addEventListener("click", function (evento) {
   evento.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
   // Selecciona los campos de entrada de texto
   const si1 = document.getElementById("si1");
@@ -269,7 +269,7 @@ enviarBoton.addEventListener("click", function (evento) {
   const no1Valida = checkWord(no1.value);
   const no2Valida = checkWord(no2.value);
   const no3Valida = checkWord(no3.value);
-  document.getElementById("arriesgando").style.display = 'none';
+  ocultar(riskForm);
   // Comprueba si los campos cumplen con la condición
   if (
     si1Valida &&
