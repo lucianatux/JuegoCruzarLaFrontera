@@ -83,7 +83,7 @@ function onSubmitFormulario(evento) {
   let input = document.querySelector("#palabra");
   let palabra = input.value;
   palabra = palabra + "?";
-  input.value = '';
+  input.value = "";
 
   // Obtener una referencia al div con id "girlask" donde aparecera la pregunta
   const div = document.getElementById("girlask");
@@ -109,7 +109,7 @@ function onSubmitFormulario(evento) {
       let prespuesta = document.createElement("p");
       prespuesta.textContent = verificarPalabra(palabra);
       prespuesta.id = "respuesta";
-	  prespuesta.className = "dialogo";
+      prespuesta.className = "dialogo";
       div2.appendChild(prespuesta);
       mostrarTexto("respuesta");
       setTimeout(function () {
@@ -127,40 +127,40 @@ formulario.addEventListener("submit", onSubmitFormulario);
 //CHEQUEO DE LA PALABRA EN BASE A LA CLAVE
 function checkWord(word) {
   // Verifica si la palabra cumple con la condición deseada
-  let condition = word.includes('e');
+  let condition = word.includes("e");
   return condition;
 }
 
 function verificarPalabra(palabra) {
-	// Llama a la función checkWord para verificar si la palabra cumple con la condición
+  // Llama a la función checkWord para verificar si la palabra cumple con la condición
   let esValida = checkWord(palabra);
   // Si la palabra cumple con la condición, devuelve "Sí, si puedes"
   // De lo contrario, devuelve "No, no puedes"
   return esValida ? "Sí, si puedes" : "No, no puedes";
-  }
+}
 
-  //LO QUE PASA AL ARRIESGAR
-  document.getElementById("arriesgar").addEventListener("click", function () {
-    document.getElementById("pistas").style.display = 'none';
-    document.getElementById("arriesgando").style.display = 'block';
-    document.getElementById("arriesgar").style.display = 'none';
-  });
+//LO QUE PASA AL ARRIESGAR
+document.getElementById("arriesgar").addEventListener("click", function () {
+  document.getElementById("pistas").style.display = "none";
+  document.getElementById("arriesgando").style.display = "block";
+  document.getElementById("arriesgar").style.display = "none";
+});
 
-  //LO QUE PASA AL ENVIAR LUEGO DE ARRIESGAR
+//LO QUE PASA AL ENVIAR LUEGO DE ARRIESGAR
 // Selecciona el formulario y el botón de envío
-const formulario2 = document.getElementById('arriesgando');
-const enviarBoton = document.getElementById('entrega');
+const formulario2 = document.getElementById("arriesgando");
+const enviarBoton = document.getElementById("entrega");
 
 // Agrega un controlador de eventos al botón de envío
-enviarBoton.addEventListener('click', function(evento) {
+enviarBoton.addEventListener("click", function (evento) {
   evento.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
   // Selecciona los campos de entrada de texto
-  const si1 = document.getElementById('si1');
-  const si2 = document.getElementById('si2');
-  const si3 = document.getElementById('si3');
-  const no1 = document.getElementById('no1');
-  const no2 = document.getElementById('no2');
-  const no3 = document.getElementById('no3');
+  const si1 = document.getElementById("si1");
+  const si2 = document.getElementById("si2");
+  const si3 = document.getElementById("si3");
+  const no1 = document.getElementById("no1");
+  const no2 = document.getElementById("no2");
+  const no3 = document.getElementById("no3");
   // Verifica si todas las palabras cumplen con la condición
   const si1Valida = checkWord(si1.value);
   const si2Valida = checkWord(si2.value);
@@ -168,34 +168,41 @@ enviarBoton.addEventListener('click', function(evento) {
   const no1Valida = checkWord(no1.value);
   const no2Valida = checkWord(no2.value);
   const no3Valida = checkWord(no3.value);
+  document.getElementById("arriesgando").style.display = 'none';
   // Comprueba si los campos cumplen con la condición
-  if (si1Valida && si2Valida && si3Valida && !no1Valida && !no2Valida && !no3Valida) {
+  if (
+    si1Valida &&
+    si2Valida &&
+    si3Valida &&
+    !no1Valida &&
+    !no2Valida &&
+    !no3Valida
+  ) {
     // Muestra un mensaje de felicitación
     ganar();
     // Add confetti to the container
-for (var i = 0; i < 50; i++) {
-  var confetti = document.createElement('div');
-  confetti.classList.add('confetti');
-  confetti.style.left = Math.random() * 100 + '%';
-  confetti.style.animationDelay = Math.random() * 2 + 's';
-  document.querySelector('.confetti-container').appendChild(confetti);
-}
-
-// Remove confetti after 5 seconds
-setTimeout(function() {
-  var confettis = document.querySelectorAll('.confetti');
-  for (var i = 0; i < confettis.length; i++) {
-    confettis[i].parentNode.removeChild(confettis[i]);
-  }
-}, 5000);
-    setTimeout(function() {
+    for (var i = 0; i < 50; i++) {
+      var confetti = document.createElement("div");
+      confetti.classList.add("confetti");
+      confetti.style.left = Math.random() * 100 + "%";
+      confetti.style.animationDelay = Math.random() * 2 + "s";
+      document.querySelector(".confetti-container").appendChild(confetti);
+    }
+    // Remove confetti after 5 seconds
+    setTimeout(function () {
+      var confettis = document.querySelectorAll(".confetti");
+      for (var i = 0; i < confettis.length; i++) {
+        confettis[i].parentNode.removeChild(confettis[i]);
+      }
+    }, 5000);
+    setTimeout(function () {
       // Recarga la página después de 5 segundos
       location.reload();
     }, 5000);
   } else {
     // Muestra un mensaje de error
     perder();
-    setTimeout(function() {
+    setTimeout(function () {
       // Recarga la página después de 5 segundos
       location.reload();
     }, 5000);
@@ -218,4 +225,3 @@ function perder() {
   mensaje.style.color = "white";
   mensaje.style.padding = "20px";
 }
-
