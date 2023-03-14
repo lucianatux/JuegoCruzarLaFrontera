@@ -1,9 +1,4 @@
 /*
-function revisarPalabra(palabra, norma) {
-	// Revisa si la palabra cumple con la norma
-	// Retorna true si cumple y false si no cumple
-}
-
 document.querySelector('form').addEventListener('submit', function(event) {
 	event.preventDefault(); // Evita que el formulario se envíe y la página se refresque
 
@@ -22,15 +17,6 @@ document.querySelector('form').addEventListener('submit', function(event) {
 function obtenerNorma() {
 	// Retorna una norma aleatoria o seleccionada de una lista
 }
-
-var director = 'Director del juego'; // Inicializa el director del juego
-
-function revisarPalabra(palabra, norma) {
-	// Revisa si la palabra cumple con la norma
-	// Retorna true si cumple y false si no cumple
-}
-
-document.querySelector('form').addEventListener('submit');
 */
 
 //MODO OSCURO Y MODO CLARO
@@ -185,18 +171,51 @@ enviarBoton.addEventListener('click', function(evento) {
   // Comprueba si los campos cumplen con la condición
   if (si1Valida && si2Valida && si3Valida && !no1Valida && !no2Valida && !no3Valida) {
     // Muestra un mensaje de felicitación
-    alert('¡Felicitaciones! Ganaste');
+    ganar();
+    // Add confetti to the container
+for (var i = 0; i < 50; i++) {
+  var confetti = document.createElement('div');
+  confetti.classList.add('confetti');
+  confetti.style.left = Math.random() * 100 + '%';
+  confetti.style.animationDelay = Math.random() * 2 + 's';
+  document.querySelector('.confetti-container').appendChild(confetti);
+}
+
+// Remove confetti after 5 seconds
+setTimeout(function() {
+  var confettis = document.querySelectorAll('.confetti');
+  for (var i = 0; i < confettis.length; i++) {
+    confettis[i].parentNode.removeChild(confettis[i]);
+  }
+}, 5000);
     setTimeout(function() {
       // Recarga la página después de 5 segundos
       location.reload();
     }, 5000);
   } else {
     // Muestra un mensaje de error
-    alert('Perdiste alpiste');
+    perder();
     setTimeout(function() {
       // Recarga la página después de 5 segundos
       location.reload();
     }, 5000);
   }
 });
+
+//LO QUE PASA SI GANAS Y LO QUE PASA SI PIERDES
+function ganar() {
+  const mensaje = document.getElementById("mensaje");
+  mensaje.innerHTML = "<h4>¡Felicitaciones! Ganaste</h4>";
+  mensaje.style.backgroundColor = "green";
+  mensaje.style.color = "white";
+  mensaje.style.padding = "20px";
+}
+
+function perder() {
+  const mensaje = document.getElementById("mensaje");
+  mensaje.innerHTML = "<h4>Perdiste alpiste</h4>";
+  mensaje.style.backgroundColor = "red";
+  mensaje.style.color = "white";
+  mensaje.style.padding = "20px";
+}
 
