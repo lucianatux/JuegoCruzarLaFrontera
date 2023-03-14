@@ -17,13 +17,97 @@ document.querySelector('form').addEventListener('submit', function(event) {
 function obtenerNorma() {
 	// Retorna una norma aleatoria o seleccionada de una lista
 }
+// CONSTANTES
+const info = document.getElementById("info");
+const comenzar = document.getElementById("comenzar");
+const game = document.getElementById("game");
+const girlask = document.getElementById("girlask");
+const oldmananswer = document.getElementById("oldmananswer");
+const arriesgar = document.getElementById("arriesgar");
+const pistas = document.getElementById("pistas");
+const arriesgando = document.getElementById("arriesgando");
+const enviarBoton = document.getElementById("entrega");
+
+// FUNCIONES
+function mostrar(elemento) {
+elemento.style.display = "block";
+}
+
+function ocultar(elemento) {
+elemento.style.display = "none";
+}
+
+function mostrarTextoLento(idElemento) {
+const elemento = document.getElementById(idElemento);
+const texto = elemento.innerHTML;
+elemento.innerHTML = "";
+let i = 0;
+const intervalo = setInterval(function () {
+if (i < texto.length) {
+elemento.innerHTML += texto.charAt(i);
+i++;
+} else {
+clearInterval(intervalo);
+}
+}, 30);
+}
+
+function crearPregunta(pregunta) {
+const ppregunta = document.createElement("p");
+ppregunta.textContent = pregunta;
+ppregunta.id = "pregunta";
+ppregunta.className = "dialogo";
+return ppregunta;
+}
+
+function crearPalabra(palabra) {
+const pword = document.createElement("p");
+pword.textContent = palabra;
+pword.id = "word";
+pword.className = "dialogo";
+return pword;
+}
+
+function crearRespuesta(respuesta) {
+const prespuesta = document.createElement("p");
+prespuesta.textContent = respuesta;
+prespuesta.id = "respuesta";
+prespuesta.className = "dialogo";
+return prespuesta;
+}
+
+function agregarTexto(elemento, texto) {
+elemento.appendChild(texto);
+}
+
+function eliminarElemento(elemento) {
+elemento.remove();
+}
+
+function verificarPalabra(palabra) {
+let esValida = checkWord(palabra);
+return esValida ? "Sí, si puedes" : "No, no puedes";
+}
+
+function onSubmitFormulario(evento) {
+evento.preventDefault();
+const input = document.querySelector("#palabra");
+let palabra = input.value;
+palabra = palabra + "?";
+input.value = "";
+
+ocultar(info);
+comenzar.innerHTML = "Reiniciar";
+mostrar(game);
+
+const ppregunta = crearP
 */
 
 //MODO OSCURO Y MODO CLARO
 let guardians = document.getElementsByClassName("guardian");
 let girls = document.getElementsByClassName("girl");
 
-document.getElementById("darkmode").addEventListener("click", function () {
+document.getElementById("darkmodeButton").addEventListener("click", function () {
   if (document.body.style.background == "var(--second-color)") {
     document.body.style.background = "var(--first-color)";
     document.body.style.color = "var(--second-color)";
@@ -48,15 +132,15 @@ document.getElementById("darkmode").addEventListener("click", function () {
 });
 
 //LO QUE PASA AL COMENZAR
-document.getElementById("comenzar").addEventListener("click", function () {
-  if (document.getElementById("info").style.display == "none") {
-    document.getElementById("info").style.display = "block";
-    document.getElementById("comenzar").innerHTML = "Comenzar Juego";
-    document.getElementById("game").style.display = "none";
+document.getElementById("startButton").addEventListener("click", function () {
+  if (document.getElementById("gameInfo").style.display == "none") {
+    document.getElementById("gameInfo").style.display = "block";
+    document.getElementById("startButton").innerHTML = "Comenzar Juego";
+    document.getElementById("gameScreen").style.display = "none";
   } else {
-    document.getElementById("info").style.display = "none";
-    document.getElementById("comenzar").innerHTML = "Reiniciar";
-    document.getElementById("game").style.display = "block";
+    document.getElementById("gameInfo").style.display = "none";
+    document.getElementById("startButton").innerHTML = "Reiniciar";
+    document.getElementById("gameScreen").style.display = "block";
     mostrarTexto("hola");
   }
 });
@@ -80,42 +164,42 @@ function mostrarTexto(idElemento) {
 //LO QUE PASA AL ENVIAR PALABRA
 function onSubmitFormulario(evento) {
   evento.preventDefault(); // Evita que el formulario se envíe
-  let input = document.querySelector("#palabra");
-  let palabra = input.value;
+  let wordInput = document.querySelector("#palabra");
+  let palabra = wordInput.value;
   palabra = palabra + "?";
-  input.value = "";
+  wordInput.value = "";
 
   // Obtener una referencia al div con id "girlask" donde aparecera la pregunta
-  const div = document.getElementById("girlask");
+  const askDiv = document.getElementById("girlask");
   // Obtener una referencia al div2 con id "oldmananswer" donde aparecera la respuesta
-  const div2 = document.getElementById("oldmananswer");
+  const answerDiv = document.getElementById("oldmananswer");
   // Crear un nuevo elemento "p" con la pregunta y con id pregunta
-  let ppregunta = document.createElement("p");
-  ppregunta.textContent = "Puedo cruzar la frontera con ... ";
-  ppregunta.id = "pregunta";
-  ppregunta.className = "dialogo";
+  let questionElem = document.createElement("p");
+  questionElem.textContent = "Puedo cruzar la frontera con ... ";
+  questionElem.id = "pregunta";
+  questionElem.className = "dialogo";
   // Crear un nuevo elemento "p" con el contenido de la palabra y con id word
-  let pword = document.createElement("p");
-  pword.textContent = palabra;
-  pword.id = "word";
-  pword.className = "dialogo";
+  let wordElem = document.createElement("p");
+  wordElem.textContent = palabra;
+  wordElem.id = "word";
+  wordElem.className = "dialogo";
   // Agrega y muestra la pregunta, la palabra y la respuesta coorespondiente segun la funcion y luego las elimina
-  div.appendChild(ppregunta);
+  askDiv.appendChild(questionElem);
   mostrarTexto("pregunta");
   setTimeout(function () {
-    div.appendChild(pword);
+    askDiv.appendChild(wordElem);
     mostrarTexto("word");
     setTimeout(function () {
-      let prespuesta = document.createElement("p");
-      prespuesta.textContent = verificarPalabra(palabra);
-      prespuesta.id = "respuesta";
-      prespuesta.className = "dialogo";
-      div2.appendChild(prespuesta);
+      let answerElem = document.createElement("p");
+      answerElem.textContent = verificarPalabra(palabra);
+      answerElem.id = "respuesta";
+      answerElem.className = "dialogo";
+      answerDiv.appendChild(answerElem);
       mostrarTexto("respuesta");
       setTimeout(function () {
-        ppregunta.remove();
-        pword.remove();
-        prespuesta.remove();
+        questionElem.remove();
+        wordElem.remove();
+        answerElem.remove();
       }, 3000);
     }, 3000);
   }, 3000);

@@ -52,11 +52,11 @@
   padding-right: 15px;
 }
 
-#info{
+#gameInfo{
   display: block;
 }
 
-#game{
+#gameScreen{
   display: none;
   border-style: double;
   margin: 10px 5px;
