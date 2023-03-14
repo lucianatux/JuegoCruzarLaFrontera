@@ -147,3 +147,12 @@ function verificarPalabra(palabra) {
 	  return "No, no puedes";
 	}
   }
+
+  //LO QUE PASA AL ARRIESGAR
+  document.getElementById("arriesgar").addEventListener("click", function () {
+    if (document.getElementById("arriesgando").style.display == 'block') {
+      document.getElementById("arriesgando").style.display = 'none';
+    }else{
+      document.getElementById("arriesgando").style.display = 'block';
+    }
+  });
