@@ -109,13 +109,13 @@ input[type="text"] {
 }
 
 .mensaje-ganador {
-  background-color: green;
+  background-image: linear-gradient(to top, #d05116 0%, #d70d90 100%);
   color: white;
   padding: 1.25rem;
 }
 
 .mensaje-perdedor {
-  background-color: red;
+  background-image: linear-gradient(to top, #051b9b 0%, #1355c0 100%);;
   color: white;
   padding: 1.25rem;
 }
@@ -123,7 +123,7 @@ input[type="text"] {
 /*FESTEJO*/
 .confetti-container {
   position: relative;
-  width: 100%;
+  width: 90%;
   height: 100%;
 }
 
@@ -133,7 +133,7 @@ input[type="text"] {
   height: 0.625rem;
   background-color: yellow;
   border-radius: 50%;
-  animation: confetti-fall 2s linear infinite;
+  animation: confetti-fall 3s linear infinite;
 }
 
 @keyframes confetti-fall {

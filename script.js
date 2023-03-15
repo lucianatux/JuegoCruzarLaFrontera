@@ -213,14 +213,14 @@ finalRiskButton.addEventListener("click", function (evento) {
 // Muestra mensaje de ganar o perder
 function ganar() {
   const mensaje = document.getElementById("mensaje");
-  mensaje.innerHTML = "<h4>¡Felicitaciones! ¡Ganaste!</h4>";
+  mensaje.innerHTML = "<h1>¡Felicitaciones! ¡Ganaste!<br> La clave era:<br> Las palabras que contengan la letra 'e'</h1>";
   mensaje.classList.add("mensaje-ganador");
   mensaje.classList.remove("mensaje-perdedor");
 }
 
 function perder() {
   const mensaje = document.getElementById("mensaje");
-  mensaje.innerHTML = "<h4>Perdiste</h4>";
+  mensaje.innerHTML = "<h1>Perdiste. Puedes intentar otra vez!</h1>";
   mensaje.classList.add("mensaje-perdedor");
   mensaje.classList.remove("mensaje-ganador");
 }
