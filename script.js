@@ -141,21 +141,6 @@ function onSubmitFormulario(evento) {
 const formulario = document.querySelector("form");
 formulario.addEventListener("submit", onSubmitFormulario);
 
-//CHEQUEO DE LA PALABRA EN BASE A LA CLAVE xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-function checkWord(word) {
-  // Verifica si la palabra cumple con la condición deseada
-  let condition = word.includes("e");
-  return condition;
-}
-
-function verificarPalabra(palabra) {
-  // Llama a la función checkWord para verificar si la palabra cumple con la condición
-  let esValida = checkWord(palabra);
-  // Si la palabra cumple con la condición, devuelve "Sí, si puedes"
-  // De lo contrario, devuelve "No, no puedes"
-  return esValida ? '"Sí, si puedes"' : '"No, no puedes"';
-}
-
 //LO QUE PASA AL ARRIESGAR xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 // Obtiene elementos del DOM
 const clues = document.getElementById("clues");
@@ -182,12 +167,12 @@ finalRiskButton.addEventListener("click", function (evento) {
   const no2 = document.getElementById("no2");
   const no3 = document.getElementById("no3");
   // Valida entradas de texto
-  const si1Valida = checkWord(si1.value);
-  const si2Valida = checkWord(si2.value);
-  const si3Valida = checkWord(si3.value);
-  const no1Valida = checkWord(no1.value);
-  const no2Valida = checkWord(no2.value);
-  const no3Valida = checkWord(no3.value);
+  const si1Valida = checkWord(si1.value, claveGenerada);
+  const si2Valida = checkWord(si2.value, claveGenerada);
+  const si3Valida = checkWord(si3.value, claveGenerada);
+  const no1Valida = checkWord(no1.value, claveGenerada);
+  const no2Valida = checkWord(no2.value, claveGenerada);
+  const no3Valida = checkWord(no3.value, claveGenerada);
   // Oculta formulario de riesgo
   ocultar(riskForm);
 
@@ -235,5 +220,36 @@ function confeti() {
     confetti.style.animationDelay = Math.random() * 2 + "s";
     document.querySelector(".confetti-container").appendChild(confetti);
   }}
+
+  //CLAVES xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  const claves = [
+    /[ea]/,
+    /[b-df-hj-np-tv-z]r/,
+    /[aeiou]{2}/,
+    /^(\w)\w*\1$/
+  ];
+
+  const claveGenerada = generarClave(claves);
+
+  function generarClave(claves) {
+    const indiceAleatorio = Math.floor(Math.random() * claves.length);
+    const claveAleatoria = claves[indiceAleatorio].toString();
+    return claveAleatoria;
+  }
+  
+  function checkWord(word, clave) {
+    const regex = new RegExp(clave.slice(1, -1)); // Removemos los slashes del principio y del final de la expresión regular
+    return regex.test(word);
+  }
+
+  //CHEQUEO DE LA PALABRA EN BASE A LA CLAVE xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+function verificarPalabra(palabra) {
+  // Llama a la función checkWord para verificar si la palabra cumple con la condición
+  let esValida = checkWord(palabra, claveGenerada);
+  // Si la palabra cumple con la condición, devuelve "Sí, si puedes"
+  // De lo contrario, devuelve "No, no puedes"
+  return esValida ? '"Sí, si puedes"' : '"No, no puedes"';
+}
+  
  
   
