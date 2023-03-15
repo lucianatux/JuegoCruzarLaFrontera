@@ -111,36 +111,47 @@ input[type="text"] {
 .mensaje-ganador {
   background-image: linear-gradient(to top, #d05116 0%, #d70d90 100%);
   color: white;
-  padding: 1.25rem;
+  padding: 1rem;
 }
 
 .mensaje-perdedor {
   background-image: linear-gradient(to top, #051b9b 0%, #1355c0 100%);;
   color: white;
-  padding: 1.25rem;
+  padding: 1rem;
 }
 
 /*FESTEJO*/
 .confetti-container {
   position: relative;
-  width: 90%;
+  width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 .confetti {
   position: absolute;
-  width: 0.625rem;
-  height: 0.625rem;
-  background-color: yellow;
-  border-radius: 50%;
-  animation: confetti-fall 3s linear infinite;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 70%;
+  animation: confetti-fall 2s linear infinite, confetti-color 5s ease-in-out infinite;
 }
 
 @keyframes confetti-fall {
   0% {
-    transform: translate(0, -50px) rotate(0deg);
+    transform: translate(0, -400px) rotate(0deg);
   }
   100% {
-    transform: translate(0, 100%) rotate(360deg);
+    transform: translate(random(-200px, 200px), 100%) rotate(360deg) rotateZ(random(360deg));
   }
 }
+
+
+@keyframes confetti-color {
+  0% {
+    background-color: yellow;
+  }
+  100% {
+    background-color: rgb(192, 157, 19);
+  }
+}
+
