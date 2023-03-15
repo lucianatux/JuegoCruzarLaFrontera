@@ -17,90 +17,6 @@ document.querySelector('form').addEventListener('submit', function(event) {
 function obtenerNorma() {
 	// Retorna una norma aleatoria o seleccionada de una lista
 }
-// CONSTANTES
-const info = document.getElementById("info");
-const comenzar = document.getElementById("comenzar");
-const game = document.getElementById("game");
-const girlask = document.getElementById("girlask");
-const oldmananswer = document.getElementById("oldmananswer");
-const arriesgar = document.getElementById("arriesgar");
-const pistas = document.getElementById("pistas");
-const arriesgando = document.getElementById("arriesgando");
-const enviarBoton = document.getElementById("entrega");
-
-// FUNCIONES
-function mostrar(elemento) {
-elemento.style.display = "block";
-}
-
-function ocultar(elemento) {
-elemento.style.display = "none";
-}
-
-function mostrarTextoLento(idElemento) {
-const elemento = document.getElementById(idElemento);
-const texto = elemento.innerHTML;
-elemento.innerHTML = "";
-let i = 0;
-const intervalo = setInterval(function () {
-if (i < texto.length) {
-elemento.innerHTML += texto.charAt(i);
-i++;
-} else {
-clearInterval(intervalo);
-}
-}, 30);
-}
-
-function crearPregunta(pregunta) {
-const ppregunta = document.createElement("p");
-ppregunta.textContent = pregunta;
-ppregunta.id = "pregunta";
-ppregunta.className = "dialogo";
-return ppregunta;
-}
-
-function crearPalabra(palabra) {
-const pword = document.createElement("p");
-pword.textContent = palabra;
-pword.id = "word";
-pword.className = "dialogo";
-return pword;
-}
-
-function crearRespuesta(respuesta) {
-const prespuesta = document.createElement("p");
-prespuesta.textContent = respuesta;
-prespuesta.id = "respuesta";
-prespuesta.className = "dialogo";
-return prespuesta;
-}
-
-function agregarTexto(elemento, texto) {
-elemento.appendChild(texto);
-}
-
-function eliminarElemento(elemento) {
-elemento.remove();
-}
-
-function verificarPalabra(palabra) {
-let esValida = checkWord(palabra);
-return esValida ? "Sí, si puedes" : "No, no puedes";
-}
-
-function onSubmitFormulario(evento) {
-evento.preventDefault();
-const input = document.querySelector("#palabra");
-let palabra = input.value;
-palabra = palabra + "?";
-input.value = "";
-
-ocultar(info);
-comenzar.innerHTML = "Reiniciar";
-mostrar(game);
-
-const ppregunta = crearP
 */
 
 //CONSTANTES Y VARIABLES xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -241,67 +157,51 @@ function verificarPalabra(palabra) {
 }
 
 //LO QUE PASA AL ARRIESGAR xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+// Obtiene elementos del DOM
 const clues = document.getElementById("clues");
 const riskForm = document.getElementById("riskForm");
 const riskButton = document.getElementById("riskButton");
 const finalRiskButton = document.getElementById("finalRiskButton");
 
+// Agrega controlador de eventos al botón de riesgo
 riskButton.addEventListener("click", function() {
+  // Oculta pistas y muestra formulario para arriesgar
   ocultar(clues);
   mostrar(riskForm);
   ocultar(riskButton);
 });
 
-// Agrega un controlador de eventos al botón 
+// Agrega un controlador de eventos al botón de riesgo final
 finalRiskButton.addEventListener("click", function (evento) {
   evento.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
-  // Selecciona los campos de entrada de texto
+  // Selecciona campos de entrada de texto
   const si1 = document.getElementById("si1");
   const si2 = document.getElementById("si2");
   const si3 = document.getElementById("si3");
   const no1 = document.getElementById("no1");
   const no2 = document.getElementById("no2");
   const no3 = document.getElementById("no3");
-  // Verifica si todas las palabras cumplen con la condición
+  // Valida entradas de texto
   const si1Valida = checkWord(si1.value);
   const si2Valida = checkWord(si2.value);
   const si3Valida = checkWord(si3.value);
   const no1Valida = checkWord(no1.value);
   const no2Valida = checkWord(no2.value);
   const no3Valida = checkWord(no3.value);
+  // Oculta formulario de riesgo
   ocultar(riskForm);
-  // Comprueba si los campos cumplen con la condición
-  if (
-    si1Valida &&
-    si2Valida &&
-    si3Valida &&
-    !no1Valida &&
-    !no2Valida &&
-    !no3Valida
-  ) {
-    // Muestra un mensaje de felicitación
+
+  // Comprueba si las entradas son válidas
+  if (si1Valida && si2Valida && si3Valida && !no1Valida && !no2Valida && !no3Valida) {
+    // Si las entradas son válidas, muestra mensaje de felicitación y animaciones
     ganar();
-    // Add confetti to the container
-    for (var i = 0; i < 50; i++) {
-      var confetti = document.createElement("div");
-      confetti.classList.add("confetti");
-      confetti.style.left = Math.random() * 100 + "%";
-      confetti.style.animationDelay = Math.random() * 2 + "s";
-      document.querySelector(".confetti-container").appendChild(confetti);
-    }
-    // Remove confetti after 5 seconds
-    setTimeout(function () {
-      var confettis = document.querySelectorAll(".confetti");
-      for (var i = 0; i < confettis.length; i++) {
-        confettis[i].parentNode.removeChild(confettis[i]);
-      }
-    }, 5000);
+    confeti();
     setTimeout(function () {
       // Recarga la página después de 5 segundos
       location.reload();
     }, 5000);
   } else {
-    // Muestra un mensaje de error
+    // Si las entradas no son válidas, muestra mensaje de haber perdido el juego
     perder();
     setTimeout(function () {
       // Recarga la página después de 5 segundos
@@ -310,19 +210,30 @@ finalRiskButton.addEventListener("click", function (evento) {
   }
 });
 
-//LO QUE PASA SI GANAS Y LO QUE PASA SI PIERDES
+// Muestra mensaje de ganar o perder
 function ganar() {
   const mensaje = document.getElementById("mensaje");
-  mensaje.innerHTML = "<h4>¡Felicitaciones! Ganaste</h4>";
-  mensaje.style.backgroundColor = "green";
-  mensaje.style.color = "white";
-  mensaje.style.padding = "20px";
+  mensaje.innerHTML = "<h4>¡Felicitaciones! ¡Ganaste!</h4>";
+  mensaje.classList.add("mensaje-ganador");
+  mensaje.classList.remove("mensaje-perdedor");
 }
 
 function perder() {
   const mensaje = document.getElementById("mensaje");
-  mensaje.innerHTML = "<h4>Perdiste alpiste</h4>";
-  mensaje.style.backgroundColor = "red";
-  mensaje.style.color = "white";
-  mensaje.style.padding = "20px";
+  mensaje.innerHTML = "<h4>Perdiste</h4>";
+  mensaje.classList.add("mensaje-perdedor");
+  mensaje.classList.remove("mensaje-ganador");
 }
+
+
+// Agrega animaciones de confeti
+function confeti() {
+  for (var i = 0; i < 50; i++) {
+    var confetti = document.createElement("div");
+    confetti.classList.add("confetti");
+    confetti.style.left = Math.random() * 100 + "%";
+    confetti.style.animationDelay = Math.random() * 2 + "s";
+    document.querySelector(".confetti-container").appendChild(confetti);
+  }}
+ 
+  
