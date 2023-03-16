@@ -224,7 +224,14 @@ function confeti() {
   //CLAVES xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   const claves = [
     /[ea]/,
+    /[uo]/,
+    /[st]/,
+    /[ia]/,
+    /[eo]/,
+    /[p]/,
     /[b-df-hj-np-tv-z]r/,
+    /[b-df-hj-np-tv-z]l/,
+    /[b-df-hj-np-tv-z]b/,
     /[aeiou]{2}/,
     /^(\w)\w*\1$/
   ];
