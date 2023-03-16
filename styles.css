@@ -60,7 +60,7 @@ body {
   display: none;
   border-style: double;
   margin: 0.625rem 0.3125rem;
-  padding: 0.9375rem;
+  padding: 0.94rem;
 }
 
 img {
@@ -125,11 +125,11 @@ input[type="text"] {
   position: relative;
   width: 100%;
   height: 100%;
-  overflow: hidden;
 }
 
 .confetti {
   position: absolute;
+  left: calc(50% - 600px);
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 70%;

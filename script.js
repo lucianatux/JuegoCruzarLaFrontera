@@ -198,7 +198,7 @@ finalRiskButton.addEventListener("click", function (evento) {
 // Muestra mensaje de ganar o perder
 function ganar() {
   const mensaje = document.getElementById("mensaje");
-  mensaje.innerHTML = `"<h1>¡Felicitaciones! ¡Ganaste!<br> La clave era:${claveGenerada}</h1>"`;
+  mensaje.innerHTML = "<h1>¡Felicitaciones! ¡Ganaste!<br> La clave era:${claveGenerada}</h1>";
   mensaje.classList.add("mensaje-ganador");
   mensaje.classList.remove("mensaje-perdedor");
 }
@@ -210,16 +210,24 @@ function perder() {
   mensaje.classList.remove("mensaje-ganador");
 }
 
-
-// Agrega animaciones de confeti
-function confeti() {
-  for (var i = 0; i < 50; i++) {
-    var confetti = document.createElement("div");
-    confetti.classList.add("confetti");
-    confetti.style.left = Math.random() * 100 + "%";
-    confetti.style.animationDelay = Math.random() * 2 + "s";
-    document.querySelector(".confetti-container").appendChild(confetti);
-  }}
+  function confeti() {
+    // Agrega animaciones de confeti
+    for (var i = 0; i < 50; i++) {
+      var confetti = document.createElement("div");
+      confetti.classList.add("confetti");
+      confetti.style.left = Math.random() * 100 + "%";
+      confetti.style.animationDelay = Math.random() * 2 + "s";
+      document.querySelector(".confetti-container").appendChild(confetti);
+    }
+    // Elimina los elementos de confeti después de 5 segundos
+    setTimeout(function () {
+      var confettis = document.querySelectorAll(".confetti");
+      for (var j = 0; j < confettis.length; j++) {
+        confettis[j].parentNode.removeChild(confettis[j]);
+      }
+    }, 5000);
+  }
+  
 
   //CLAVES xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   const claves = [
@@ -237,6 +245,7 @@ function confeti() {
   ];
 
   const claveGenerada = generarClave(claves);
+  console.log(claveGenerada);
 
   function generarClave(claves) {
     const indiceAleatorio = Math.floor(Math.random() * claves.length);
@@ -259,4 +268,21 @@ function verificarPalabra(palabra) {
 }
   
  
-  
+  /*function confeti() {
+  const gameSection = document.querySelector(".game-section.activo");
+  if (gameSection) {
+    for (var i = 0; i < 50; i++) {
+      var confetti = document.createElement("div");
+      confetti.classList.add("confetti");
+      confetti.style.left = Math.random() * 100 + "%";
+      confetti.style.animationDelay = Math.random() * 2 + "s";
+      gameSection.querySelector(".confetti-container").appendChild(confetti);
+    }
+    setTimeout(function() {
+      gameSection.querySelectorAll(".confetti").forEach(function(confetti) {
+        confetti.remove();
+      });
+    }, 5000);
+  }
+}
+*/
