@@ -180,7 +180,9 @@ finalRiskButton.addEventListener("click", function (evento) {
   if (si1Valida && si2Valida && si3Valida && !no1Valida && !no2Valida && !no3Valida) {
     // Si las entradas son válidas, muestra mensaje de felicitación y animaciones
     ganar();
+    console.log("ganó");
     confeti();
+    mostrarclave();
     setTimeout(function () {
       // Recarga la página después de 5 segundos
       location.reload();
@@ -188,6 +190,7 @@ finalRiskButton.addEventListener("click", function (evento) {
   } else {
     // Si las entradas no son válidas, muestra mensaje de haber perdido el juego
     perder();
+    console.log("perdió");
     setTimeout(function () {
       // Recarga la página después de 5 segundos
       location.reload();
@@ -209,6 +212,12 @@ function perder() {
   mensaje.classList.add("mensaje-perdedor");
   mensaje.classList.remove("mensaje-ganador");
 }
+
+function mostrarclave() {
+  const mensajeclave = document.getElementById("mensajeclave");
+  mensajeclave.innerHTML = "<h1>clave tatata</h1>";
+}
+
 
   function confeti() {
     // Agrega animaciones de confeti
