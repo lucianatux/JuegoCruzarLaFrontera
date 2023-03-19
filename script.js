@@ -168,11 +168,22 @@ finalRiskButton.addEventListener("click", function (evento) {
   const no3 = document.getElementById("no3");
   // Valida entradas de texto
   const si1Valida = checkWord(si1.value, claveGenerada);
+  console.log(si1Valida);
   const si2Valida = checkWord(si2.value, claveGenerada);
+  console.log(si1Valida);
+
   const si3Valida = checkWord(si3.value, claveGenerada);
+  console.log(si1Valida);
+
   const no1Valida = checkWord(no1.value, claveGenerada);
+  console.log(si1Valida);
+
   const no2Valida = checkWord(no2.value, claveGenerada);
+  console.log(si1Valida);
+
   const no3Valida = checkWord(no3.value, claveGenerada);
+  console.log(si1Valida);
+
   // Oculta formulario de riesgo
   ocultar(riskForm);
 
